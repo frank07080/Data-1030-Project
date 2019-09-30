@@ -29,7 +29,7 @@ The other one is called "Data Exploration on NYC Airbnb." The data was used for 
 # Dataset Preprocessing
 
 
-There are a total of 3 features we are interested in for now and will be preprocessed.
+There are a total of 5 features we are interested in for now and will be preprocessed.
 
 
 The first feature is the neighbourhood group in New York city. I have chosen the OneHotEncoder for this categorical feature. The reason is that there is no specific order of the neighbourhood groups. The first 10 rows of this feature is shown below.
@@ -60,6 +60,12 @@ The next feature is availability of a year of Airbnbs in New York city. I have c
 
 
 ![](figures/f5.PNG)
+
+
+Combining all five features and put them together into a pandas dataframe, we have the following for the first 10 rows of all features.
+
+
+![](figures/total.PNG)
 
 ```python
 
