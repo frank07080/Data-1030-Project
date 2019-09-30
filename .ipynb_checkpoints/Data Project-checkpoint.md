@@ -1,7 +1,8 @@
 Data Project Proposal  
 Guanzhong Chen  
 Data 1030  
-Brown ID: 140268394
+Brown ID: 140268394  
+GitHub Link: https://github.com/frank07080/Data-1030-Project
 
 
 # Introductory and Problem
@@ -31,70 +32,34 @@ The other one is called "Data Exploration on NYC Airbnb." The data was used for 
 There are a total of 3 features we are interested in for now and will be preprocessed.
 
 
-The first feature is the neighbourhood group in New York city. I have chosen the OrdinalEncoder for this categorical feature. The reason is that the name of neighbourhood group can be ordered in an alphabetical order.
+The first feature is the neighbourhood group in New York city. I have chosen the OneHotEncoder for this categorical feature. The reason is that there is no specific order of the neighbourhood groups. The first 10 rows of this feature is shown below.
 
-```python
-import pandas as pd
 
-# load data from a csv file
-df = pd.read_csv('AB_NYC_2019.csv') # there are also pd.read_excel(), and pd.read_sql()
-```
+![](figures/f1.PNG)
 
-```python
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import OrdinalEncoder
 
-X_train1 = pd.DataFrame(df['neighbourhood_group'])
+The next feature is room type of Airbnbs in New York city. I have chosen the OrdinalEncoder for this categorical feature. The reason is that they can be ordered by how good a room is. For example, the entire apartment/room is better than a private room. And a private room is better than a shared room. The first 10 rows of this feature is shown below.
 
-# initialize the encoder
-enc = OrdinalEncoder(categories = [['Bronx','Brooklyn', 'Manhattan','Queens','Staten Island']]) # The ordered list of 
-# fit the training data
-enc.fit(X_train1)
-# print the categories - not really important because we manually gave the ordered list of categories
-print(enc.categories_)
-# transform X_train. We could have used enc.fit_transform(X_train) to combine fit and transform
-X_train1_oe = enc.transform(X_train1)
 
-print(X_train1_oe[:10])
-df['neighbourhood_group'] = X_train1_oe
-print(df['neighbourhood_group'][:10])
-```
+![](figures/f2.PNG)
 
-The second feature is the number of reviews per month of an Airbnb in New York city. I have chosen the StandardScaler for this continuous feature. The reason is that these continuous values follow a tail distribution because a small number of the most popular Airbnbs will get the most reviews.
 
-```python
-from sklearn.preprocessing import StandardScaler
+The next feature is number of reviews of Airbnbs in New York city. I have chosen the Standard Scaler for this continuous feature. The reason is that some of good Airbnbs will get significantly more reviews than the others. And this follows a tailed distribution. The first 10 rows of this feature is shown below.
 
-X_train2 = pd.DataFrame(df['reviews_per_month'])
-scaler = StandardScaler()
-X_train2_oe = scaler.fit_transform(X_train2)
-print(X_train2_oe[:10])
 
-df['reviews_per_month'] = X_train2_oe
-print(df['reviews_per_month'][:10])
-```
+![](figures/f3.PNG)
 
-The third feature is the type of room Airbnbs in New York city. I have chosen the OrdinalEncoder for this categorical feature. The reason is that they can be ordered by how good a room is. For example, the entire apartment/room is better than a private room. And a private room is better than a shared room.
 
-```python
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.preprocessing import OrdinalEncoder
+The next feature is reviews per month of Airbnbs in New York city. This is very similar to the last feature. I have chosen the Standard Scaler for this continuous feature. The reason is the same a s the last one. The first 10 rows of this feature is shown below.
 
-X_train3 = pd.DataFrame(df['room_type'])
 
-# initialize the encoder
-enc = OrdinalEncoder(categories = [['Entire home/apt','Private room', 'Shared room']]) # The ordered list of 
-# fit the training data
-enc.fit(X_train3)
-# print the categories - not really important because we manually gave the ordered list of categories
-print(enc.categories_)
-# transform X_train. We could have used enc.fit_transform(X_train) to combine fit and transform
-X_train3_oe = enc.transform(X_train3)
+![](figures/f4.PNG)
 
-print(X_train3_oe[:10])
-df['room_type'] = X_train3_oe
-print(df['room_type'][:10])
-```
+
+The next feature is availability of a year of Airbnbs in New York city. I have chosen the MinMax Scaler for this continuous feature. The reason is that there is a clear min and max of this feature. The first 10 rows of this feature is shown below.
+
+
+![](figures/f5.PNG)
 
 ```python
 
